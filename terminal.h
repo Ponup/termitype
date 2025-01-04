@@ -1,5 +1,17 @@
 #pragma once
 
+#include <sys/ioctl.h>
+
+struct _terminal_t {
+    struct winsize size;
+
+    void (*flush)();
+};
+
+typedef struct _terminal_t terminal_t;
+
+terminal_t* new_terminal();
+
 void refresh_screen();
 
 void clear_screen();

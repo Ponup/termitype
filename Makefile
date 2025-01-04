@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O2
+CFLAGS = -std=c23 -Wall -Wextra -O2 -D_POSIX_C_SOURCE=199309L
 TARGET = termitype
 SOURCES = main.c printer.c terminal.c game_intro.c game_end.c game.c
 OBJECTS = $(SOURCES:.c=.o)

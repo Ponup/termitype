@@ -11,6 +11,11 @@
 static struct termios oldt, newt;
 static int flags;
 
+terminal_t* new_terminal() {
+    terminal_t* terminal = malloc(sizeof(terminal_t));
+    return terminal;
+}
+
 void refresh_screen()
 {
     fflush(stdout);

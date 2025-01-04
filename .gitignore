@@ -1,3 +1,4 @@
 termitype
 *.o
 .vscode/
+.idea

@@ -3,6 +3,8 @@
 #include <time.h>
 #include <stdint.h>
 
+#include "terminal.h"
+
 typedef enum
 {
     START,
@@ -18,3 +20,4 @@ typedef struct
 } game_state_t;
 
 void init_game_state(game_state_t *game_state);
+void play_game(game_state_t* game_state, const terminal_t *terminal);

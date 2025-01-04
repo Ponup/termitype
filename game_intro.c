@@ -23,7 +23,7 @@ static const char LOGO[12][25] = {
 void start_game_intro()
 {
     clear_screen();
-    printf("\e[?25l");
+    printf("\033[?25l");
     printer_t *printer = new_printer();
     printer
         ->color(printer, COLOR_BLUE, COLOR_WHITE)
@@ -42,7 +42,7 @@ void start_game_intro()
         printer->text(printer, LOGO[i]);
         printer->flush(printer);
     }
-    printf("\e[?25h");
+    printf("\033[?25h");
     delete_printer(printer);
     getchar();
 }
