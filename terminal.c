@@ -8,12 +8,12 @@
 
 #include "colors.h"
 
-static struct termios oldt, newt;
+struct termios oldt, newt;
 static int flags;
 
-terminal_t* new_terminal() {
-    terminal_t* terminal = malloc(sizeof(terminal_t));
-    return terminal;
+void init_terminal(terminal_t *terminal) {
+    terminal->configure = terminal_configure;
+    terminal->restore = terminal_restore;
 }
 
 void refresh_screen()
@@ -53,7 +53,7 @@ void make_unblock()
     fcntl(STDIN_FILENO, F_SETFL, flags & ~O_NONBLOCK);
 }
 
-void configure_terminal()
+void terminal_configure()
 {
     flags = fcntl(STDIN_FILENO, F_GETFL, 0);
 
@@ -64,8 +64,9 @@ void configure_terminal()
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 }
 
-void restore_terminal()
+void terminal_restore()
 {
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     clear_screen();
 }
+

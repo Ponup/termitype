@@ -12,31 +12,30 @@
 #include "game_intro.h"
 #include "game_end.h"
 
-scene_t scene;
 game_state_t game_state;
 terminal_t terminal;
 
 int main()
 {
-	scene = START;
-	configure_terminal();
+	init_terminal(&terminal);
+	terminal.configure();
 
-	if (scene == START)
-	{
-		start_game_intro();
-		scene = PLAYING;
-	}
-	if (scene == PLAYING)
-	{
-		play_game(&game_state, &terminal);
-		make_unblock();
-		scene = END;
-	}
-	if (scene == END)
-	{
-		start_game_end(&game_state);
-		clear_screen();
-	}
-	restore_terminal();
-	return 0;
+	bool quit = false;
+	do {
+		int selection = start_game_intro();
+		if(selection == 'p') {
+			play_game(&game_state, &terminal);
+			make_unblock();
+			start_game_end(&game_state);
+			clear_screen();
+		}
+		else if(selection == 'q') {
+			quit = true;
+		}
+	} while(!quit);
+
+	terminal.restore();
+
+	return EXIT_SUCCESS;
 }
+

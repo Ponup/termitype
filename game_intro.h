@@ -1,3 +1,3 @@
 #pragma once
 
-void start_game_intro();
+int start_game_intro();

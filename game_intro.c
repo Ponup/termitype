@@ -20,7 +20,7 @@ static const char LOGO[12][25] = {
     "_.'    | ___ |    `._  ",
     "        \\___/          "};
 
-void start_game_intro()
+int start_game_intro()
 {
     clear_screen();
     printf("\033[?25l");
@@ -28,11 +28,11 @@ void start_game_intro()
     printer
         ->color(printer, COLOR_BLUE, COLOR_WHITE)
         ->pos(printer, 10, 9)
-        ->text(printer, "|------------------------|")
+        ->text(printer, "|-----------------------------------|")
         ->pos(printer, 10, 10)
-        ->text(printer, "| Press any key to start |")
+        ->text(printer, "| Press 'p' to play or 'q' to quit. |")
         ->pos(printer, 10, 11)
-        ->text(printer, "|------------------------|")
+        ->text(printer, "|-----------------------------------|")
         ->flush(printer);
     for (int i = 0; i < 12; i++)
     {
@@ -44,5 +44,5 @@ void start_game_intro()
     }
     printf("\033[?25h");
     delete_printer(printer);
-    getchar();
+    return getchar();
 }

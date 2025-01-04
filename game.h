@@ -5,13 +5,6 @@
 
 #include "terminal.h"
 
-typedef enum
-{
-    START,
-    PLAYING,
-    END
-} scene_t;
-
 typedef struct
 {
     uint8_t text_pos;
